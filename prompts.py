@@ -4,15 +4,14 @@ custom_prompt_template = """
 
 Use the following context to answer the question.  
 
-If you don't have the answer in your context, let the user know and attempt to answer the question using information outside the context.
-
 Context:
 {context}
 
 Question:
 {question}
 
-Answer in a clear and concise manner.
+If you don't have the answer in your context, let the user know and attempt to answer the question using information outside the context.
+Answer in a clear and concise manner.  
 """
 
 PROMPT = PromptTemplate(

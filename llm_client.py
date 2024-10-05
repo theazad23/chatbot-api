@@ -3,6 +3,11 @@ from typing import Optional, List
 from pydantic import BaseModel, PrivateAttr
 from openai import OpenAI
 from config import OPENAI_API_KEY, OPENAI_API_BASE, MODEL_ID
+import os
+
+# Load environment variables for model temperature and max tokens
+MODEL_TEMP = float(os.getenv('MODEL_TEMP', 0.7))  # Default to 0.7 if not set
+MODEL_MAX_TOKENS = int(os.getenv('MODEL_MAX_TOKENS', 512))  # Default to 512 if not set
 
 # Configure the OpenAI client
 client = OpenAI(
@@ -12,8 +17,8 @@ client = OpenAI(
 
 class OpenAIClientLLM(LLM, BaseModel):
     model_name: str = MODEL_ID
-    temperature: float = 0.7
-    max_tokens: int = 2048
+    temperature: float = MODEL_TEMP
+    max_tokens: int = MODEL_MAX_TOKENS
 
     _client: OpenAI = PrivateAttr()
 
