@@ -4,6 +4,10 @@ from langchain_chroma import Chroma
 from config import EMBEDDING_MODEL_NAME, VECTORSTORE_DIR
 import os
 
+# Ensure the vector store directory exists
+if not os.path.exists(VECTORSTORE_DIR):
+    os.makedirs(VECTORSTORE_DIR)
+
 # Prepare documents
 documents = [
     Document(page_content="""
